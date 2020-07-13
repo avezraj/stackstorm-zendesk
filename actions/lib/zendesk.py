@@ -3,6 +3,7 @@ from zenpy.lib.api_objects import Ticket
 from zenpy.lib.api_objects import Comment
 from zenpy.lib.exception import RecordNotFoundException
 from zenpy.lib.exception import APIException
+import json
 
 from st2common.runners.base_action import Action
 
@@ -63,7 +64,7 @@ class ZendeskAction(Action):
                 'description': self.clean_response(t.description)},
                 list(query_results)[:limit]
             )
-            return {'search_results': results_clean}
+            return {'search_results': json.dumps(results_clean, ensure_ascii=False)}
         except APIException:
             return {'error': 'Could not execute search for query: {}'.format(query)}
         except Exception as e:
