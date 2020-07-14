@@ -64,7 +64,23 @@ class ZendeskAction(Action):
                 'description': self.clean_response(t.description)},
                 list(query_results)[:limit]
             )
-            return {'search_results': json.dumps(results_clean, ensure_ascii=False)}
+
+            json_serial = "123"
+            my_json = {
+                'settings': {
+                    "serial": json_serial,
+                    "status": '2',
+                    "ersion": '3',
+                },
+                'config': {
+                    'active': '4',
+                    'version': '5'
+                }
+            }
+
+
+            return {json.dumps(my_json)}
+
         except APIException:
             return {'error': 'Could not execute search for query: {}'.format(query)}
         except Exception as e:

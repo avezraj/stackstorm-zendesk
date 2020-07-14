@@ -14,3 +14,11 @@ parameters:
     description: "A limit on the amount of results returned"
     required: false
     default: 10
+
+
+  output_schema:
+    output:
+      required: true
+      type: object
+      search_results:
+          type: object
